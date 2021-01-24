@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<title>shoot the bird</title>
+	<style>
+		body
+		{
+			background-color: #ebebe0;
+		}
+		.timer
+		{
+			float:right;
+			width:300px;
+			height:50px;
+			background-color: pink;
+			border-radius: 10px;
+			box-shadow: 5px 5px 2.5px #888888;
+		}
+		.running{
+			background-color:  #f41d1d;
+			width:300px;
+			height:50px;
+			border-radius: 10px;
+			animation-name: adder;
+    		animation-duration: 20s;
+			animation-iteration-count:1;
+		}
+		@keyframes adder{
+			0% {
+			      width:10px;
+			      background-color: #4fe837;
+			    }
+			    to {
+			      width:300px;
+			      background-color: #f41d1d;
+			    }
+		}
+		#ag
+		{
+			color:green;
+			padding-left: 32%;
+			font-family:"AR CARTER";
+			font-size:70px;
+			text-align:center;
+			font-weight:bold;
+			text-decoration: none;
+		}
+		#won{
+			color:green;
+			font-family:"AR CARTER";
+			font-size:70px;
+			text-align:center;
+			font-weight:bold;
+			animation-name: spin;
+    		animation-duration: 4s;
+			animation-iteration-count:1;
+		}
+		@keyframes spin{
+			from {
+			      -moz-transform: rotateY(0deg);
+			      -ms-transform: rotateY(0deg);
+			      transform: rotateY(0deg);
+			      opacity:0;
+			    }
+			    to {
+			      -moz-transform: rotateY(-360deg);
+			      -ms-transform: rotateY(-360deg);
+			      transform: rotateY(-360deg);
+			      opacity:1;
+			    }
+		}
+		.bird
+		{
+			width:45px;
+			height:40px;
+		}
+		body
+		{
+			margin-left:25%;
+		}
+		#gr{
+			width:620px;
+			position:absolute;
+			bottom:-2px;
+			border-radius:10px;
+			z-index: 1;
+		}
+		#area{
+			border:solid lightblue 1px;
+			box-shadow: 10px 10px 5px #888888;
+			border-radius:10px;
+			background: linear-gradient(lightblue,white);
+			position:relative;
+			width:620px;
+			height:620px;
+		}
+		.brd{
+			/*background-color: black;*/
+			width:18px;
+			text-align: center;
+			display:block;
+			border:blue 0px solid;
+			border-radius: 10px;
+			z-index: 2;
+		}
+		#b1
+		{
+			position:absolute;
+			top:100px;
+			left:100px;
+			animation-name: one;
+    		animation-duration: 4s;
+			animation-iteration-count:infinite;
+		}
+		@keyframes one {
+							0% {top:100px;
+								left:100px;}
+							25% {top:120px;
+								left:180px;}
+							50% {top:130px;
+								left:160px;}
+							75% {top:300px;
+								left:160px;}
+							100% {top:100px;
+								left:100px;}
+					}
+		#b2
+		{
+			position:absolute;
+			top:200px;
+			left:200px;
+			animation-name: two;
+    		animation-duration: 5s;
+			animation-iteration-count:infinite;
+		}
+		@keyframes two {
+							0% {top:200px;
+								left:200px;}
+							25% {top:300px;
+								left:300px;}
+							50% {top:155px;
+								left:392px;}
+							75% {top:250px;
+								left:100px;}
+							100% {top:200px;
+								left:200px;}
+					}
+		#b3
+		{
+			position:absolute;
+			top:156px;
+			left:255px;
+			animation-name: three;
+    		animation-duration: 6s;
+			animation-iteration-count:infinite;
+		}
+		@keyframes three {
+							0% {top:156px;
+								left:255px;}
+							25% {top:106px;
+								left:150px;}
+							50% {top:234px;
+								left:243px;}
+							75% {top:200px;
+								left:200px;}
+							100% {top:156px;
+								left:255px;}
+					}
+		#b4
+		{
+			position:absolute;
+			top:200px;
+			left:400px;
+			animation-name: four;
+    		animation-duration: 7s;
+			animation-iteration-count:infinite;
+		}
+		@keyframes four {
+							0% {top:200px;
+								left:400px;}
+							25% {top:400px;
+								left:200px;}
+							50% {top:250px;
+								left:250px;}
+							75% {top:345px;
+								left:534px;}
+							100% {top:200px;
+								left:400px;}
+					}
+		#b5
+		{
+			position:absolute;
+			top:400px;
+			left:550px;
+			animation-name: five;
+    		animation-duration: 8s;
+			animation-iteration-count:infinite;
+		}
+		@keyframes five {
+							0% {top:400px;
+								left:550px;}
+							25% {top:320px;
+								left:200px;}
+							50% {top:130px;
+								left:300px;}
+							75% {top:200px;
+								left:320px;}
+							100% {top:400px;
+								left:550px;}
+					}
+		#b6
+		{
+			position:absolute;
+			top:550px;
+			left:550px;
+			animation-name: six;
+    		animation-duration: 9s;
+			animation-iteration-count:infinite;
+		}
+		@keyframes six {
+							0% {top:550px;
+								left:550px;}
+							25% {top:200px;
+								left:300px;}
+							50% {top:100px;
+								left:150px;}
+							75% {top:360px;
+								left:100px;}
+							100% {top:550px;
+								left:550px;}
+					}
+		#b7
+		{
+			position:absolute;
+			top:100px;
+			left:500px;
+			animation-name: seven;
+    		animation-duration: 10s;
+			animation-iteration-count:infinite;
+		}
+		@keyframes seven {
+							0% {top:100px;
+								left:500px;}
+							25% {top:200px;
+								left:180px;}
+							50% {top:130px;
+								left:300px;}
+							75% {top:-10px;
+								left:160px;}
+							100% {top:100px;
+								left:500px;}
+					}
+		#b8
+		{
+			position:absolute;
+			top:0px;
+			left:500px;
+			animation-name: eight;
+    		animation-duration: 11s;
+			animation-iteration-count:infinite;
+		}
+		@keyframes eight {
+							0% {top:0px;
+								left:500px;}
+							25% {top:300px;
+								left:300px;}
+							50% {top:155px;
+								left:392px;}
+							75% {top:250px;
+								left:100px;}
+							100% {top:0px;
+								left:500px;}
+					}
+		#b9
+		{
+			position:absolute;
+			top:200px;
+			left:100px;
+			animation-name: nine;
+    		animation-duration: 12s;
+			animation-iteration-count:infinite;
+		}
+		@keyframes nine {
+							0% {top:200px;
+								left:100px;}
+							25% {top:100px;
+								left:180px;}
+							50% {top:0px;
+								left:160px;}
+							75% {top:150px;
+								left:160px;}
+							100% {top:200px;
+								left:100px;}
+					}
+		#b10
+		{
+			position:absolute;
+			top:500px;
+			left:0px;
+			animation-name: ten;
+    		animation-duration: 13s;
+			animation-iteration-count:infinite;
+		}
+		@keyframes ten {
+							0% {top:500px;
+								left:0px;}
+							25% {top:400px;
+								left:300px;}
+							50% {top:550px;
+								left:550px;}
+							75% {top:450px;
+								left:200px;}
+							100% {top:500px;
+								left:0px;}
+					}
+	</style>
+</head>
+<body>
+	<div class="timer"><div class="running"></div></div>
+	<div id="area">
+		<div class="brd" id="b1">
+			<img src="images/bird.gif" class=bird alt="bird">
+		</div>
+		<div class="brd" id="b2">
+			<img src="images/bird.gif" class=bird alt="bird">
+		</div>
+		<div class="brd" id="b3">
+			<img src="images/bird.gif" class=bird alt="bird">
+		</div>
+		<div class="brd" id="b4">
+			<img src="images/bird.gif" class=bird alt="bird">
+		</div>
+		<div class="brd" id="b5">
+			<img src="images/bird.gif" class=bird alt="bird">
+		</div>
+		<div class="brd" id="b6">
+			<img src="images/bird.gif" class=bird alt="bird">
+		</div>
+		<div class="brd" id="b7">
+			<img src="images/bird.gif" class=bird alt="bird">
+		</div>
+		<div class="brd" id="b8">
+			<img src="images/bird.gif" class=bird alt="bird">
+		</div>
+		<div class="brd" id="b9">
+			<img src="images/bird.gif" class=bird alt="bird">
+		</div>
+		<div class="brd" id="b10">
+			<img src="images/bird.gif" class=bird alt="bird">
+		</div>
+		<img src="images/grass.png" id="gr" alt="grass">
+	</div>
+	<script>
+		var cnt=0;
+		var ful=document.getElementById("area");
+		var bird=document.getElementsByClassName("brd");
+		function isemp(cnt)
+		{
+			if(cnt==10)
+			{
+				var para=document.createElement("p");
+				para.setAttribute("id","won");
+				para.innerHTML="You Won!!! :)";
+				ful.appendChild(para);
+				var a=document.createElement("a");
+				a.setAttribute("href","bird_shoot.html");
+				a.setAttribute("id","ag");
+				a.innerHTML="Play Again";
+				ful.appendChild(a);
+			}
+			else
+			{
+				//alert("not empty");
+			}
+		}
+		function box(e)
+		{
+			cnt++;
+			e.target.style.backgroundColor="red";
+			e.target.parentNode.removeChild(e.target);
+			isemp(cnt);
+		}
+		for(i = 0; i < bird.length; i++)
+		{
+			bird[i].addEventListener("click",box);
+		}
+		var t = setInterval(function(){ myTime() }, 20000);
+		function myTime()
+		{
+			if(ful.childNodes.length==23){
+			var para=document.createElement("p");
+			para.setAttribute("id","won");
+			para.innerHTML="Game Over!! :(";
+			ful.appendChild(para);
+			var a=document.createElement("a");
+			a.setAttribute("href","bird_shoot.html");
+			a.setAttribute("id","ag");
+			a.innerHTML="Try Again";
+			ful.appendChild(a);}
+			for(i = 0; i < bird.length; i++)
+			{
+				bird[i].removeEventListener("click",box);
+			}
+			/*var bird=document.getElementsByClassName("brd");
+			alert(bird.length);
+			var i=0;
+			for(i=0;i<bird.length;i++)
+			{
+				//alert(bird[i]);
+				//alert(bird.length);
+				ful.removeChild(bird[i]);
+			}*/
+			clearInterval(t);
+		}
+	</script>
+</body>
+</html>

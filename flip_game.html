@@ -1,0 +1,231 @@
+<html>
+	<head>
+		<title>flip game</title>
+		<style type="text/css">
+			body{background-color:black;}
+			div {display: inline-block; width: 100; height: 100; border: 1px solid black;opacity:1;}
+			img{width:100;height:100;display:none;opacity:1;
+				animation-name: bg;
+    			animation-duration: 0.15s;
+				animation-iteration-count:1;
+			}
+			.first {margin-left: 25%;}
+			#par{float:right;font-family:"Comic Sans MS";font-size:50px;padding-right:20px;color:#888888;}
+			@keyframes bg {
+							0% {opacity:0;}
+							25% {opacity:0.25;}
+							50% {opacity:0.5;}
+							75% {opacity:0.75;}
+							100% {opacity:1;}
+						   }
+		</style>
+	</head>
+	<body>
+		<p id="par">Moves: 0</p>
+		<div class="first"></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<br />
+		<div class="first"></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<br />
+		<div class="first"></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<br />
+		<div class="first"></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<br />
+		<div class="first"></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<br />
+		<div class="first"></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<br />
+		<script>
+			var para=document.getElementById("par");
+			var move=0;
+			var images=["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R",
+						"A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R"];
+			function shuffleArray(array)
+			{
+				for (let i = array.length - 1; i > 0; i--) 
+				{
+					let j = Math.floor(Math.random() * (i + 1));
+					[array[i], array[j]] = [array[j], array[i]];
+				}
+			}
+			shuffleArray(images);
+			//alert(images);
+			alldiv = document.getElementsByTagName("div");
+			for (i = 0; i < alldiv.length; i++)
+			{
+				if(i<12)	var myvar=setInterval(change1(), 100);
+				else  if(i<24)	var myvar=setInterval(change(), 100);
+				else if(i<36)	var myvar=setInterval(change1(), 100);
+				clearInterval(myvar);
+			}
+			function change()
+			{
+				 alldiv[i].animate([
+				  // keyframes
+				  { transform: 'rotateZ(180deg) rotateY(180deg) rotateX(180deg)'},
+				  { transform: 'rotateZ(0deg) rotateY(0deg) rotateX(0deg)'}
+				], { 
+				  // timing options
+				  duration: 1000,
+				  iterations:1
+				});
+			}
+			function change1()
+			{
+				 alldiv[i].animate([
+				  // keyframes
+				  { transform: 'rotateZ(180deg)'},
+				  { transform: 'rotateZ(0deg)'}
+				], { 
+				  // timing options
+				  duration: 1300,
+				  iterations:1
+				});
+			}
+			for (i = 0; i < alldiv.length; i++)
+			{
+				alldiv[i].style.backgroundColor ="#455678";
+				alldiv[i].addEventListener("click",show);
+				var ele=document.createElement("img");
+				ele.setAttribute("src","images/"+images[i]+".jpg");
+				alldiv[i].appendChild(ele);
+			}
+			allimg = document.getElementsByTagName("img");
+			var cnt=0;
+			function count()
+			{
+				
+				for (i = 0; i < alldiv.length; i++)
+				{
+					if(alldiv[i].style.backgroundColor == "rgb(171, 34, 51)")
+						cnt++;
+				}
+				//alert(cnt);
+				return cnt;	
+			}
+			var a=new Array();var win=0;
+			function show(e)
+			{
+				move++;
+				para.innerHTML="Moves: "+move;
+				if(count()>2)
+				{
+					if(a[0]==a[1])
+					{
+						for (i = 0; i < alldiv.length; i++)
+						{
+							if(alldiv[i].style.backgroundColor == "rgb(171, 34, 51)")
+							{
+								alldiv[i].style.backgroundColor ="transparent";
+								allimg[i].style.removeProperty("display");
+								alldiv[i].removeEventListener("click",show);
+								//alldiv[i].removeChild(allimg[i]);
+							}
+						}
+						++win;
+					}
+					else
+					{
+						for (i = 0; i < alldiv.length; i++)
+						{
+							if(alldiv[i].style.backgroundColor !="transparent")
+							{
+								alldiv[i].style.backgroundColor ="#455678";
+								allimg[i].style.removeProperty("display");
+							}
+						}
+					}
+					cnt=0;
+					a.pop();a.pop();
+				}
+				e.target.style.backgroundColor = "#AB2233";
+				var c = e.target.childNodes[0];
+				if(c)  {c.style.display="block";
+				c.animate([
+				  // keyframes
+				  { transform: 'rotateY(180deg)' },
+				  { transform: 'rotateY(0deg)' }
+				], { 
+				  // timing options
+				  duration: 500,
+				  iterations:1
+				});
+				var pu=c.getAttribute("src");
+				a.push(pu);}
+				//alert(a);
+				if(win==18)
+				{
+					/*var x=document.getElementsByTagName("div");
+					for (i = 0; i < x.length; i++)
+					{
+						alldiv[i].parentNode.removeChild(alldiv[i]);
+					}*/
+						var won=document.createElement("h1");
+						won.style.fontFamily="Comic Sans MS";
+						won.style.textShadow = '5px 5px 0 lightblue';
+						won.animate([
+								  // keyframes
+								 // {textShadow:'5px 5px 0 lightblue'},
+								  //{textShadow:'0px 0px 0 lightblue'},
+								  //{textShadow:'5px 5px 0 lightblue'}
+								  //x-1647 y-412
+								  {transform:'translateX(0px) translateY(0px) rotateZ(0deg) rotateY(0deg) rotateX(0deg)'},
+								  {transform:'translateY(-200px) translateX(-400px) rotateZ(40deg) rotateY(40deg) rotateX(40deg)'},
+								  {transform:'translateY(-200px) translateX(400px) rotateZ(80deg) rotateY(80deg) rotateX(80deg)'},
+								  {transform:'translateY(200px) translateX(-400px) rotateZ(120deg) rotateY(120deg) rotateX(120deg)'},
+								  {transform:'translateY(-100px) translateX(300px) rotateZ(160deg) rotateY(160deg) rotateX(160deg)'},
+								  {transform:'translateY(0px) translateX(-300px) rotateZ(200deg) rotateY(200deg) rotateX(200deg)'},
+								  {transform:'translateY(100px) translateX(300px) rotateZ(240deg) rotateY(240deg) rotateX(240deg)'},
+								  {transform:'translateY(150px) translateX(300px) rotateZ(280deg) rotateY(280deg) rotateX(280deg)'},
+								  {transform:'translateY(200px) translateX(250px) rotateZ(320deg) rotateY(320deg) rotateX(320deg)'},
+								  {transform:'translateZ(0px) translateX(0px) translateY(0px) rotateZ(360deg) rotateY(360deg) rotateX(360deg)'}
+								], { 
+								  // timing options
+								  duration: 10000,
+								  iterations:5
+								});
+						won.style.fontSize="70px";
+						won.style.position="fixed";
+						won.style.margin="0px";
+						var x="45%";
+						var y="45%";
+						won.style.top=x;
+						won.style.left=y;
+						won.style.zIndex="2";
+						won.innerHTML="You Won!!";
+						won.style.color="#efefef";
+						document.body.appendChild(won);
+				}
+			}
+		</script>
+	</body>
+</html>
